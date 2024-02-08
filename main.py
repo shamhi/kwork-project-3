@@ -28,7 +28,7 @@ async def main():
         await db.create_tables()
 
     await idle()
-    await app.stop()
+    await app.stop(block=True)
 
 
 if __name__ == '__main__':
