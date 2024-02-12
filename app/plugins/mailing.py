@@ -1,3 +1,6 @@
+import asyncio
+import random
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
@@ -18,6 +21,7 @@ async def send_mailing(client: Client, message: Message):
         try:
             await client.send_message(chat_id=chat_id, text=text)
             count += 1
+            await asyncio.sleep(delay=random.randint(5, 30))
         except Exception as er:
             error_chat = await client.get_chat(chat_id=chat_id)
             print(f"Не удалось отправить сообщение в чат {error_chat.username}\n"
