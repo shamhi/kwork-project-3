@@ -25,9 +25,12 @@ async def send_mailing(client: Client, message: Message):
             print(f"Задержка на {random_delay} сек.")
             await asyncio.sleep(delay=random_delay)
         except Exception as er:
-            error_chat = await client.get_chat(chat_id=chat_id)
-            print(f"Не удалось отправить сообщение в чат {error_chat.username}\n"
-                  f"Ошибка: {er}")
+            try:
+                error_chat = await client.get_chat(chat_id=chat_id)
+                print(f"Не удалось отправить сообщение в чат {error_chat.username}\n"
+                      f"Ошибка: {er}")
+            except:
+                ...
 
     await message.reply(
         text=f"<emoji id=5206607081334906820>✔️</emoji>Сообщение разослано по {count} из {len(chats)} чатам",
