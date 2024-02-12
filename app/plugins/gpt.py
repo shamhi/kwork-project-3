@@ -11,7 +11,7 @@ from app.utils.eden_ai import gpt_response, speech_to_text
 from app.utils import scripts
 
 
-@Client.on_message(filters.private & filters.text)
+@Client.on_message(~filters.me & filters.private & filters.text)
 async def answer_gpt_on_text(client: Client, message: Message, conn: aiosqlite.Connection):
     db = Database(conn=conn)
     text = message.text
@@ -40,7 +40,7 @@ async def answer_gpt_on_text(client: Client, message: Message, conn: aiosqlite.C
     await message.reply(text=response)
 
 
-@Client.on_message(filters.private & (filters.voice | filters.audio | filters.video | filters.video_note))
+@Client.on_message(~filters.me & filters.private & (filters.voice | filters.audio | filters.video | filters.video_note))
 async def answer_gpt_on_speech(client: Client, message: Message, conn: aiosqlite.Connection):
     db = Database(conn=conn)
     user = message.from_user
