@@ -3,6 +3,7 @@ import random
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from pyrogram.enums import ChatType
 
 
 @Client.on_message(filters.me & filters.private & filters.command(['mailing', 'message'], prefixes="/"))
@@ -14,7 +15,7 @@ async def send_mailing(client: Client, message: Message):
             text='<emoji id=5210952531676504517>❌</emoji><b>Ты не ввел текст после команды!!!</b>',
             reply_to_message_id=message.id)
 
-    chats = [obj.chat.id async for obj in client.get_dialogs()]
+    chats = [obj.chat.id async for obj in client.get_dialogs() if obj.chat.type == ChatType.PRIVATE]
     count = 0
 
     for chat_id in chats:
