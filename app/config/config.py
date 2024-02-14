@@ -11,8 +11,13 @@ def getenv(key, ntype, default=None):
 
 
 class Config:
-    API_ID = getenv('API_ID', int)
-    API_HASH = getenv('API_HASH', str)
-    APP_NAME = getenv('APP_NAME', str)
+    API_ID1 = getenv('API_ID1', int)
+    API_HASH1 = getenv('API_HASH1', str)
+    APP_NAME1 = getenv('APP_NAME1', str)
+
+    API_ID2 = getenv('API_ID2', int)
+    API_HASH2 = getenv('API_HASH2', str)
+    APP_NAME2 = getenv('APP_NAME2', str)
+
     EDEN_TOKEN = getenv('EDEN_TOKEN', str)
     GLOBAL_ACTION = getenv('GLOBAL_ACTION', str)
